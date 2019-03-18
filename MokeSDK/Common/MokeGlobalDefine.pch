@@ -1,0 +1,26 @@
+//
+//  PrefixHeader.pch
+//  MokeSDK
+//
+//  Created by 李一贤 on 2019/3/18.
+//  Copyright © 2019 李一贤. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "LocalMapKeys.h"
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+//初始化重试次数
+#define MokeInitRetryMaxTime 3
+//根视图
+#define RootVC [UIApplication sharedApplication].keyWindow.rootViewController
+//旋转方向
+#define ORIENTATION [UIApplication sharedApplication].statusBarOrientation
+//屏幕边界
+#define SCREEN_BOUNDS [UIScreen mainScreen].bounds
+
+
+
+#endif /* PrefixHeader_pch */

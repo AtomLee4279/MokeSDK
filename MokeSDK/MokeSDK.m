@@ -13,6 +13,7 @@
 #import "MokeLinkerViewController.h"
 
 
+
 @implementation MokeSDK
 
 +(void)MokeInit{
@@ -22,16 +23,28 @@
     [MokeNetworking kk_POST:BaseURLString parameters:[MokeBaseRequestParams new] progress:NULL success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"MokeSDK:respondObject%@",responseObject);
-        InitRespondData *tmp = [InitRespondData new];
-        [tmp setValuesForKeysWithDictionary:responseObject];
-        NSLog(@"tmp%@",tmp);
-        if (tmp.openUrl) {
-            [RootVC presentViewController:[MokeLinkerViewController new] animated:NO completion:nil];
+        
+        InitRespondData *initData = [InitRespondData new];
+        [initData setValuesForKeysWithDictionary:responseObject];
+        NSLog(@"tmp%@",initData);
+        //请求成功，激活成功
+        if (initData.errcode.intValue==0) {
+            if (initData.openUrl) {
+                [RootVC presentViewController:[MokeLinkerViewController new] animated:NO completion:nil];
+            }
+        }
+        //请求成功，激活失败
+        else{
+            if (initData.errmsg) {
+                //提示错误信息
+                [KKToast kk_showToast:initData.errmsg];
+            }
         }
         
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //初始化失败，先静默重试n次
-        NSLog(@"MokeSDK:initFail:");
+        //请求失败，激活失败，先静默重试n次
+        NSLog(@"MokeSDK:initFail:network");
         NSLog(@"==InitTimes:%ld==",(long)InitTimes);
         if (InitTimes < MokeInitRetryMaxTime) {
             

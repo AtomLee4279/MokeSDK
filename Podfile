@@ -8,4 +8,5 @@ target 'MokeSDK' do
   # Pods for MokeSDK
     pod 'AFNetworking', '~> 3.2.0'
     pod 'MJExtension', '~> 3.0.13'
+    pod 'KSToastView', '~> 0.5.7'
 end

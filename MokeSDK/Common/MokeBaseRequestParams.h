@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString *locale;
 
 /* 是否映射 */
-@property(nonatomic, copy) NSString *i;
+@property(nonatomic, copy) NSString *sdkTag;
 
 
 //+ (instancetype)shareInstance;

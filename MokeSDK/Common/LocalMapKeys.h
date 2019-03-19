@@ -25,7 +25,7 @@
 #define IDFA @"koalaI"
 #define IDFV @"koalaJ"
 #define LOCALE @"koalaM"
-
+#define SDKTAG @"i"
 
 #pragma  mark - Respond-MapingKeys
 

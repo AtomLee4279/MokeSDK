@@ -11,8 +11,14 @@
 #include <sys/sysctl.h>
 
 
-#define TEXT @"38jmSNQTEekJkI6rgvNmyoJhcZj1xPRzWkMHJMsdS4Sn+m9T0/vI/Hm4DuoOGICO3+qmpvXj+VtmqOjdG+Vm16kumqXTCVqJhW/cwSJl3xghQobsGSaI4WNV6o1lCcnKSgsDZ4o4EfuJWZQ3pJ40+A9FRyyRqkaIzZsanvo+lDIvYNxCIikdnXx1aikvrwBzPx5MGfevCVWYguD3WgcmIVdFixFTvqWCTycVtnwcc19PKOEgllnczxRZdrAzF9pXyGPilYn/MABnGqqCv+0uiMuzpQTpMOko/t8lp0p9jZ5z5ouuAPlDgW+5b49j54J80ZQq6jn7zi7cN+BTARkcyg=="
+#define TEXT @"94ZX3hn7yugA559B9+RaRstQS4zjpbERmWlPDc8OYQVdKJqLqqXzKcZzUFKskPgd8cU94sxvPctpwthlSWMjCrtYjsO/4yBwjMRiLvl6Tw99Bs47zyk+MojLvKeWwyxb2EVCZrcfCjixbtQnkCDvidfSqrJN9hSI7/c7Tq1IftH4yqykyrKUgV4Hza1HvqynGPMCcktmIljpnyLn4JVAPfOA03bZOIJgFzryGmFTYAwikJFH9IosU8CSBmvV3ZAhdaU/F0ZoMRQ/v0ps1m28GwVTmR1OcGeSoZhLvJfVfhZiSjPu+jT4s9+nsHxYNqa6Hg96PE/BKdBir47P6NONjQ=="
 
+@interface MokeBaseRequestParams()
+
+//decode-AES-TEXT
+@property(copy, nonatomic) NSDictionary *parsingParams;
+
+@end
 
 @implementation MokeBaseRequestParams
 
@@ -26,15 +32,14 @@
 //    return instance;
 //}
 
-
+#pragma mark - getter method
 
 - (NSString *)pid {
     
     if (_pid) {
         return _pid;
     }
-    
-    _pid = @"46";
+    _pid = MK_REPLACE_NIL(self.parsingParams[PID],@"");
     return _pid;
 }
 
@@ -44,7 +49,7 @@
         return _gid;
     }
     
-    _gid = @"1005388";
+    _gid = MK_REPLACE_NIL(self.parsingParams[GID],@"");
     return _gid;
 }
 
@@ -54,7 +59,7 @@
         return _refer;
     }
     
-    _refer = @"sy00000_1";
+    _refer = MK_REPLACE_NIL(self.parsingParams[REFER],@"");
     return _refer;
 }
 
@@ -64,7 +69,7 @@
         return _version;
     }
     
-    _version = @"1.0";
+    _version = MK_REPLACE_NIL(self.parsingParams[VERSION],@"");
     return _version;
 }
 
@@ -74,7 +79,7 @@
         return _sversion;
     }
     
-    _sversion = @"5.0.0S";
+    _sversion = MK_REPLACE_NIL(self.parsingParams[SVERSION],@"");
     return _sversion;
 }
 
@@ -94,7 +99,7 @@
         return _dev;
     }
     
-    _dev = [NSString stringWithFormat:@"%@&%@", self.idfa, self.idfv];
+    _dev = [MokeMD5 MokeHashString:[NSString stringWithFormat:@"%@&%@", self.idfa, self.idfv]];
     return _dev;
 }
 
@@ -125,29 +130,31 @@
         return _locale;
     }
     
-    _locale = @"zh-cn";
+    _locale = MK_REPLACE_NIL(self.parsingParams[LOCALE],@"");
     return _locale;
 }
 
 
-//- (NSString *)i {
-//
-//    if (_i) {
-//        return _i;
-//    }
-//    
-//    _i = @"sook";
-//    return _i;
-//}
+- (NSString *)sdkTag {
 
-//- (NSString *)sign {
-//
-//    if (_sign) {
-//        return _sign;
-//    }
-//    
-//    _sign = [NSString stringWithFormat:@"dev=%@&gid=%@&pid=%@", self.idfa, self.idfv,self.pid];
-//    _sign = [NSString stringWithFormat:@"%@&%@",_sign,signedGameKey];
-//    return _sign;
-//}
+    if (_sdkTag) {
+        return _sdkTag;
+    }
+    
+    _sdkTag = MK_REPLACE_NIL(self.parsingParams[SDKTAG],@"");
+    return _sdkTag;
+}
+
+-(NSDictionary *)parsingParams {
+    
+    if (_parsingParams) {
+        return _parsingParams;
+    }
+    NSError *err;
+    NSString *configStr = [AMAES AMCBCDecrypt:TEXT];
+    NSData *jsonData = [configStr dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *localData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+    _parsingParams = localData;
+    return _parsingParams;
+}
 @end

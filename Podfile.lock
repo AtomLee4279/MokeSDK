@@ -14,21 +14,25 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - KSToastView (0.5.7)
   - MJExtension (3.0.15.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.0)
+  - KSToastView (~> 0.5.7)
   - MJExtension (~> 3.0.13)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - KSToastView
     - MJExtension
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  KSToastView: aeb0ca50b44e9568b6f95b2d1ec53a3f016b50fc
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
 
-PODFILE CHECKSUM: 51b9a5d0ce03f213387d74e8b0cb0440987da683
+PODFILE CHECKSUM: c33c6e8815968c9563502efdcfc2dce6d3578a6b
 
 COCOAPODS: 1.5.3

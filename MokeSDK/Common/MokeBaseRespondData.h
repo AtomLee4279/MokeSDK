@@ -13,10 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MokeBaseRespondData : NSObject
 
 /*错误编码（0为正常）*/
-@property(nonatomic,copy)NSString* yyw_errcode;
+@property(nonatomic,copy)NSString* errcode;
 
 /*错误信息*/
-@property(nonatomic,copy)NSString* yyw_errmsg;
+@property(nonatomic,copy)NSString* errmsg;
 
 @end
 

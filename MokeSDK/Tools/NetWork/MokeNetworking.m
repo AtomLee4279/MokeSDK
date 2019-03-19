@@ -51,7 +51,7 @@
 
     NSMutableDictionary *dict = [MokeNetworking processParameters:parameters] ;
     //       //AES解密
-    ////        if ([LocalData.isEnUrl boolValue]) {
+    ////        if ([mkBaseReqParams.isEnUrl boolValue]) {
     ////            NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     ////            NSString * responseAES = [AMAES AMECBDecrypt:responseString encryptKey:@""];
     ////            responseAES =[responseAES stringByTrimmingCharactersInSet:[NSCharacterSet controlCharacterSet]];
@@ -98,9 +98,29 @@
  */
 + (NSMutableDictionary*)processParameters:(nullable id)parameters{
     
-    //模型->字典
-    NSMutableDictionary *dict = [parameters mj_keyValues];
-    NSArray *keys = [dict allKeys];
+    MokeBaseRequestParams *mkBaseReqParams = parameters;
+    /* 重新整理映射了key之后的请求参数字典 */
+    NSDictionary * dict = @{
+                            
+      PID         : mkBaseReqParams.pid,
+      GID         : mkBaseReqParams.gid,
+      REFER       : mkBaseReqParams.refer,
+      VERSION     : mkBaseReqParams.version,
+      SVERSION    : mkBaseReqParams.sversion,
+      TIME        : mkBaseReqParams.time,
+      DEV         : mkBaseReqParams.dev,
+      IDFA        : mkBaseReqParams.idfa,
+      IDFV        : mkBaseReqParams.idfv,
+      LOCALE      : mkBaseReqParams.locale,
+      SDKTAG      : mkBaseReqParams.sdkTag,
+      
+      };
+    NSMutableDictionary *publicParams = [NSMutableDictionary dictionary];
+    [publicParams addEntriesFromDictionary:dict];
+    
+//    //模型->字典
+//    NSMutableDictionary *dict = [parameters mj_keyValues];
+    NSArray *keys = [publicParams allKeys];
     //升序
     NSArray *dealtKeys = [keys sortedArrayUsingComparator:^NSComparisonResult(id _Nonnull obj1, id _Nonnull obj2) {
         return [obj1 compare:obj2];
@@ -108,14 +128,14 @@
     /* 按key升序读取 */
     NSMutableString *paramStr = [NSMutableString string];
     for (NSString *key in dealtKeys) {
-        [paramStr appendString:[NSString stringWithFormat:@"&%@=%@", key, dict[key]]];
+        [paramStr appendString:[NSString stringWithFormat:@"&%@=%@", key, publicParams[key]]];
     }
     //拼接signKey
     NSString *strBeforeSign = [NSString stringWithFormat:@"%@&%@",[paramStr substringFromIndex:1],signedGameKey];
     //md5
     NSString *md5Str = [MokeMD5 MokeHashString:strBeforeSign];
-    [dict setObject:md5Str forKey:@"sign"];
-    return dict;
+    [publicParams setObject:md5Str forKey:SIGN];
+    return publicParams;
 
 }
 

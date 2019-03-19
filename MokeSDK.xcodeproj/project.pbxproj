@@ -38,6 +38,10 @@
 		67F236DB223F3D0C001A6216 /* InitRespondData.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F236D9223F3D0C001A6216 /* InitRespondData.m */; };
 		67F236DD223F4EED001A6216 /* MokeGlobalDefine.pch in Headers */ = {isa = PBXBuildFile; fileRef = 67F236DC223F4EED001A6216 /* MokeGlobalDefine.pch */; };
 		67F236DF223F7A00001A6216 /* LocalMapKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = 67F236DE223F7A00001A6216 /* LocalMapKeys.h */; };
+		67F236E5223FD1C0001A6216 /* DataConvert.h in Headers */ = {isa = PBXBuildFile; fileRef = 67F236E3223FD1C0001A6216 /* DataConvert.h */; };
+		67F236E6223FD1C0001A6216 /* DataConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F236E4223FD1C0001A6216 /* DataConvert.m */; };
+		67F236EA22409D11001A6216 /* KKToast.h in Headers */ = {isa = PBXBuildFile; fileRef = 67F236E822409D11001A6216 /* KKToast.h */; };
+		67F236EB22409D11001A6216 /* KKToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F236E922409D11001A6216 /* KKToast.m */; };
 		6BBEF197DEB5DBC8A59CC5FE /* libPods-MokeSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3ADCD864497ACF1745687A9 /* libPods-MokeSDK.a */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +105,10 @@
 		67F236D9223F3D0C001A6216 /* InitRespondData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InitRespondData.m; sourceTree = "<group>"; };
 		67F236DC223F4EED001A6216 /* MokeGlobalDefine.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MokeGlobalDefine.pch; sourceTree = "<group>"; };
 		67F236DE223F7A00001A6216 /* LocalMapKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalMapKeys.h; sourceTree = "<group>"; };
+		67F236E3223FD1C0001A6216 /* DataConvert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataConvert.h; sourceTree = "<group>"; };
+		67F236E4223FD1C0001A6216 /* DataConvert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataConvert.m; sourceTree = "<group>"; };
+		67F236E822409D11001A6216 /* KKToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKToast.h; sourceTree = "<group>"; };
+		67F236E922409D11001A6216 /* KKToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKToast.m; sourceTree = "<group>"; };
 		843CF706ACA438A217433889 /* Pods-MokeSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MokeSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-MokeSDK/Pods-MokeSDK.release.xcconfig"; sourceTree = "<group>"; };
 		94058E6162C22D7885B531AA /* Pods-MokeSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MokeSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MokeSDK/Pods-MokeSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		E3ADCD864497ACF1745687A9 /* libPods-MokeSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MokeSDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,8 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				671326202239EF86004D5275 /* MokeBaseRequestParams.h */,
-				67F236DE223F7A00001A6216 /* LocalMapKeys.h */,
 				671326212239EF86004D5275 /* MokeBaseRequestParams.m */,
+				67F236DE223F7A00001A6216 /* LocalMapKeys.h */,
 				67F236D3223F3888001A6216 /* MokeBaseRespondData.h */,
 				67F236D4223F3888001A6216 /* MokeBaseRespondData.m */,
 				67F236DC223F4EED001A6216 /* MokeGlobalDefine.pch */,
@@ -169,6 +177,8 @@
 		67132629223A0029004D5275 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				67F236E722409D04001A6216 /* Views */,
+				67F236E2223FD190001A6216 /* Convert */,
 				67132641223A5872004D5275 /* Encrpytion */,
 				6713262A223A003B004D5275 /* NetWork */,
 			);
@@ -281,6 +291,24 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		67F236E2223FD190001A6216 /* Convert */ = {
+			isa = PBXGroup;
+			children = (
+				67F236E3223FD1C0001A6216 /* DataConvert.h */,
+				67F236E4223FD1C0001A6216 /* DataConvert.m */,
+			);
+			path = Convert;
+			sourceTree = "<group>";
+		};
+		67F236E722409D04001A6216 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				67F236E822409D11001A6216 /* KKToast.h */,
+				67F236E922409D11001A6216 /* KKToast.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		9AE464A0587E1CA962CA197D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,9 +341,11 @@
 				67F236D5223F3888001A6216 /* MokeBaseRespondData.h in Headers */,
 				67F236D0223F2ED7001A6216 /* MokeLinkerViewController.h in Headers */,
 				67F236DF223F7A00001A6216 /* LocalMapKeys.h in Headers */,
+				67F236E5223FD1C0001A6216 /* DataConvert.h in Headers */,
 				676C0E18223A650A002CDDFE /* AMAES.h in Headers */,
 				6713263F223A586A004D5275 /* MokeMD5.h in Headers */,
 				676C0E1E223A71E1002CDDFE /* AMDefines.h in Headers */,
+				67F236EA22409D11001A6216 /* KKToast.h in Headers */,
 				6713262D223A0086004D5275 /* MokeNetworking.h in Headers */,
 				67132631223A019A004D5275 /* MokeInitController.h in Headers */,
 			);
@@ -457,7 +487,9 @@
 				676C0E17223A650A002CDDFE /* AMAES.m in Sources */,
 				67F236CF223F2ED7001A6216 /* MokeLinkerViewController.m in Sources */,
 				67132636223A042C004D5275 /* MokeSDK.m in Sources */,
+				67F236EB22409D11001A6216 /* KKToast.m in Sources */,
 				6713262E223A0086004D5275 /* MokeNetworking.m in Sources */,
+				67F236E6223FD1C0001A6216 /* DataConvert.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,10 @@
 #define PrefixHeader_pch
 
 #import "LocalMapKeys.h"
+#import "AMAES.h"
+#import "MokeMD5.h"
+#import "DataConvert.h"
+#import "KKToast.h"
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 //初始化重试次数
@@ -21,6 +25,10 @@
 //屏幕边界
 #define SCREEN_BOUNDS [UIScreen mainScreen].bounds
 
+/* 替换空值 */
+#define MK_REPLACE_NIL(value, default) (!MK_IS_EMPTY(value) ? value : default)
 
+/* 判空 */
+#define MK_IS_EMPTY(str) ((str) == nil || [(str) isKindOfClass:[NSNull class]] || [(str) isEqual:@""])
 
 #endif /* PrefixHeader_pch */

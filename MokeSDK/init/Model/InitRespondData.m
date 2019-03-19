@@ -17,8 +17,15 @@
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key{
     
-    if ((NSDictionary*)value[@"openUrl"]) {
+    if ([key isEqualToString:DATA]&&(NSDictionary*)value[@"openUrl"]) {
         self.openUrl = value[@"openUrl"];
-    }   
+    }
+    else if ([key isEqualToString:ERRCODE]) {
+        self.errcode = (NSString*)value;
+    }
+    else if ([key isEqualToString:ERRMSG]) {
+        self.errmsg = (NSString*)value;
+    }
+    
 }
 @end

@@ -46,11 +46,11 @@ NS_ASSUME_NONNULL_BEGIN
 /* 本机语言 */
 @property(nonatomic, copy) NSString *locale;
 
-/* 是否映射 */
+/* 是否映射（对应具体的一套映射） */
 @property(nonatomic, copy) NSString *sdkTag;
 
-
-//+ (instancetype)shareInstance;
+/* 映射的url*/
+@property(nonatomic, copy) NSString *baseUrl;
 @end
 
 NS_ASSUME_NONNULL_END

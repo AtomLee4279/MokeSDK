@@ -20,7 +20,8 @@
     
     // 初始化次数统计
     static NSInteger InitTimes = 0;
-    [MokeNetworking kk_POST:BaseURLString parameters:[MokeBaseRequestParams new] progress:NULL success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    MokeBaseRequestParams *reqObj = [MokeBaseRequestParams new];
+    [MokeNetworking kk_POST:reqObj.baseUrl parameters:reqObj progress:NULL success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"MokeSDK:respondObject%@",responseObject);
         

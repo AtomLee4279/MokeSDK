@@ -11,7 +11,7 @@
 #include <sys/sysctl.h>
 
 
-#define TEXT @"94ZX3hn7yugA559B9+RaRstQS4zjpbERmWlPDc8OYQVdKJqLqqXzKcZzUFKskPgd8cU94sxvPctpwthlSWMjCrtYjsO/4yBwjMRiLvl6Tw99Bs47zyk+MojLvKeWwyxb2EVCZrcfCjixbtQnkCDvidfSqrJN9hSI7/c7Tq1IftH4yqykyrKUgV4Hza1HvqynGPMCcktmIljpnyLn4JVAPfOA03bZOIJgFzryGmFTYAwikJFH9IosU8CSBmvV3ZAhdaU/F0ZoMRQ/v0ps1m28GwVTmR1OcGeSoZhLvJfVfhZiSjPu+jT4s9+nsHxYNqa6Hg96PE/BKdBir47P6NONjQ=="
+#define TEXT @"94ZX3hn7yugA559B9+RaRstQS4zjpbERmWlPDc8OYQVdKJqLqqXzKcZzUFKskPgd8cU94sxvPctpwthlSWMjCrtYjsO/4yBwjMRiLvl6Tw99Bs47zyk+MojLvKeWwyxb2EVCZrcfCjixbtQnkCDvidfSqrJN9hSI7/c7Tq1IftH4yqykyrKUgV4Hza1HvqynGPMCcktmIljpnyLn4JVAPfOA03bZOIJgFzryGmFTYAwikJFH9IosU8CSBmvV3ZAhQmX5zfZ+kagaD5hOlqcnwpJgJ21XkvnDrAWYO4UGPiOffKXR/o5U2i910k7JZzg8UK8UvFb+i/zfTuD85Xg1ojryi3kZk/U7d+d0DPMMdaI="
 
 @interface MokeBaseRequestParams()
 
@@ -143,6 +143,16 @@
     
     _sdkTag = MK_REPLACE_NIL(self.parsingParams[SDKTAG],@"");
     return _sdkTag;
+}
+
+- (NSString *)baseUrl {
+    
+    if (_baseUrl) {
+        return _baseUrl;
+    }
+    
+    _baseUrl = MK_REPLACE_NIL(self.parsingParams[BASEURL],@"");
+    return _baseUrl;
 }
 
 -(NSDictionary *)parsingParams {

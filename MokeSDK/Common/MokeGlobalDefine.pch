@@ -16,7 +16,7 @@
 #import "KKToast.h"
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
-//初始化重试次数
+//激活重试次数
 #define MokeInitRetryMaxTime 3
 //本地game文件夹名称
 #define gamePathName @"bin"

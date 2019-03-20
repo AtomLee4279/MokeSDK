@@ -193,8 +193,14 @@
         NSData *tmpData = [responseAES dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *respondDic = [NSJSONSerialization JSONObjectWithData:tmpData options:NSJSONReadingAllowFragments error:nil];
          NSLog(@"==mk:nameStr==%@",respondDic);
-        if (success&&(![respondDic[ERRCODE] boolValue])) {
+        //请求成功，激活成功
+        if (success&&respondDic) {
             success(NULL,respondDic);
+        }
+        //激活失败（网络原因的激活失败）
+        if (error&&failure) {
+            
+            failure(NULL,error);
         }
         
     }] resume];

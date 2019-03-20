@@ -15,132 +15,9 @@
 
 #define gamekey @"2PoILqbar1RZNyBh6we*79DGx8Y+3EFf"
 
-@interface MokeNetworking ()
-
-@property(strong, nonatomic) AFHTTPSessionManager *manager;
-
-@end
-
 @implementation MokeNetworking
 
-+ (instancetype)allocWithZone:(struct _NSZone *)zone {
-    
-    static MokeNetworking *instance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [super allocWithZone:zone];
-    });
-    
-    return instance;
-}
-
-/**
- POST
- 
- @param URLString url string
- @param parameters parameters
- @param uploadProgress upload progress
- @param success 请求成功
- @param failure 请求失败
- */
-+ (void)kk_POST:(NSString *)URLString
-     parameters:(nullable id)parameters
-       progress:(nullable void (^)(NSProgress *uploadProgress))uploadProgress
-        success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
-        failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure {
-
-    NSMutableDictionary *dict = [MokeNetworking processParameters:parameters];
-    //       //AES解密
-    ////        if ([mkBaseReqParams.isEnUrl boolValue]) {
-    ////            NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    ////            NSString * responseAES = [AMAES AMECBDecrypt:responseString encryptKey:@""];
-    ////            responseAES =[responseAES stringByTrimmingCharactersInSet:[NSCharacterSet controlCharacterSet]];
-    ////            data = [responseAES dataUsingEncoding:NSUTF8StringEncoding];
-    ////        }
-    [[MokeNetworking new].manager POST:URLString parameters:dict progress:uploadProgress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        DBLog(@"==MokeNetWorking:respondObject%@==",responseObject);
-        if (success) {
-//            NSString *nameStr =  [[NSString alloc]initWithData: responseObject encoding:NSUTF8StringEncoding];
-            success(task,responseObject);
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        if (failure) {
-            failure(task,error);
-        }
-        
-    }];
-}
-
-//#pragma mark - Getter & Setter
-- (AFHTTPSessionManager *)manager {
-
-    if (_manager) {
-        return _manager;
-    }
-
-    // 设置base url
-//    NSString *baseUrlString = BaseURLString;
-//    NSURL *basrUrl = [NSURL URLWithString:baseUrlString];
-    
-    _manager = [[AFHTTPSessionManager alloc] initWithBaseURL:nil];
-    _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
-    _manager.requestSerializer.timeoutInterval = 30.f;
-//    _manager.requestSerializer = [AFJSONRequestSerializer serializer]; // 上传JSON格式
-//    _manager.responseSerializer = [AFJSONResponseSerializer serializer];//返回json格式
-//    _manager.responseSerializer = [AFHTTPResponseSerializer serializer];//返回data
-    return _manager;
-}
-
-/**
- 请求参数进行处理
- 
- @param parameters 参数
- */
-+ (NSMutableDictionary*)processParameters:(nullable id)parameters{
-    
-    MokeBaseRequestParams *mkBaseReqParams = parameters;
-    /* 重新整理映射了key之后的请求参数字典 */
-    NSDictionary * dict = @{
-                            
-      PID         : mkBaseReqParams.pid,
-      GID         : mkBaseReqParams.gid,
-      REFER       : mkBaseReqParams.refer,
-      VERSION     : mkBaseReqParams.version,
-      SVERSION    : mkBaseReqParams.sversion,
-      TIME        : mkBaseReqParams.time,
-      DEV         : mkBaseReqParams.dev,
-      IDFA        : mkBaseReqParams.idfa,
-      IDFV        : mkBaseReqParams.idfv,
-      LOCALE      : mkBaseReqParams.locale,
-      SDKTAG      : mkBaseReqParams.sdkTag,
-      
-      };
-    NSMutableDictionary *publicParams = [NSMutableDictionary dictionary];
-    [publicParams addEntriesFromDictionary:dict];
-    
-//    //模型->字典
-//    NSMutableDictionary *dict = [parameters mj_keyValues];
-    NSArray *keys = [publicParams allKeys];
-    //升序
-    NSArray *dealtKeys = [keys sortedArrayUsingComparator:^NSComparisonResult(id _Nonnull obj1, id _Nonnull obj2) {
-        return [obj1 compare:obj2];
-    }];
-    /* 按key升序读取 */
-    NSMutableString *paramStr = [NSMutableString string];
-    for (NSString *key in dealtKeys) {
-        [paramStr appendString:[NSString stringWithFormat:@"&%@=%@", key, publicParams[key]]];
-    }
-    //拼接signKey
-    NSString *strBeforeSign = [NSString stringWithFormat:@"%@&%@",[paramStr substringFromIndex:1],mkBaseReqParams.gameKey];
-    //md5
-    NSString *md5Str = [MokeMD5 MokeHashString:strBeforeSign];
-    [publicParams setObject:md5Str forKey:SIGN];
-    return publicParams;
-
-}
-
+#pragma  mark - Method
 /**
  POST
  
@@ -160,7 +37,7 @@
     NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     //整理传参
-    NSString * tmpStr= [MokeNetworking MKDealtParams:parameters];
+    NSString * tmpStr= [MokeNetworking MKProcessParams:parameters];
     //AES-Encode
     tmpStr = [AMAES AMECBEncrypt:tmpStr encryptKey:@""];
 //    NSString *tmp =
@@ -206,7 +83,8 @@
     }] resume];
 }
 
-+ (NSString *)MKDealtParams:(nullable id)parameters {
+
++ (NSString *)MKProcessParams:(nullable id)parameters {
     
     MokeBaseRequestParams *mkBaseReqParams = parameters;
     NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:

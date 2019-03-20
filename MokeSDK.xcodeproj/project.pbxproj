@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		670D3F272242301D001D6C2E /* out6 in Resources */ = {isa = PBXBuildFile; fileRef = 670D3F262242301D001D6C2E /* out6 */; };
-		670D3F28224230DE001D6C2E /* out6 in Resources */ = {isa = PBXBuildFile; fileRef = 670D3F262242301D001D6C2E /* out6 */; };
+		670D3F2A224231BA001D6C2E /* bin in Resources */ = {isa = PBXBuildFile; fileRef = 670D3F29224231BA001D6C2E /* bin */; };
+		670D3F2B224231BA001D6C2E /* bin in Resources */ = {isa = PBXBuildFile; fileRef = 670D3F29224231BA001D6C2E /* bin */; };
 		671326222239EF86004D5275 /* MokeBaseRequestParams.h in Headers */ = {isa = PBXBuildFile; fileRef = 671326202239EF86004D5275 /* MokeBaseRequestParams.h */; };
 		671326232239EF86004D5275 /* MokeBaseRequestParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 671326212239EF86004D5275 /* MokeBaseRequestParams.m */; };
 		6713262D223A0086004D5275 /* MokeNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 6713262B223A0086004D5275 /* MokeNetworking.h */; };
@@ -72,7 +72,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		670D3F262242301D001D6C2E /* out6 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = out6; path = "../../../../04.英雄纪元/YingXiongJiYuan/YingXiongJiYuan/GameContainer/out6"; sourceTree = "<group>"; };
+		670D3F29224231BA001D6C2E /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bin; sourceTree = "<group>"; };
 		671326202239EF86004D5275 /* MokeBaseRequestParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MokeBaseRequestParams.h; sourceTree = "<group>"; };
 		671326212239EF86004D5275 /* MokeBaseRequestParams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MokeBaseRequestParams.m; sourceTree = "<group>"; };
 		6713262B223A0086004D5275 /* MokeNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MokeNetworking.h; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 		670D3F2522423009001D6C2E /* GameContainer */ = {
 			isa = PBXGroup;
 			children = (
-				670D3F262242301D001D6C2E /* out6 */,
+				670D3F29224231BA001D6C2E /* bin */,
 			);
 			path = GameContainer;
 			sourceTree = "<group>";
@@ -445,7 +445,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				670D3F272242301D001D6C2E /* out6 in Resources */,
+				670D3F2A224231BA001D6C2E /* bin in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,9 +453,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				670D3F2B224231BA001D6C2E /* bin in Resources */,
 				6713317622393D280092A838 /* LaunchScreen.storyboard in Resources */,
 				6713317322393D280092A838 /* Assets.xcassets in Resources */,
-				670D3F28224230DE001D6C2E /* out6 in Resources */,
 				6713317122393D280092A838 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

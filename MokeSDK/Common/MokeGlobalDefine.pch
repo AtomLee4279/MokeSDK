@@ -19,11 +19,13 @@
 //初始化重试次数
 #define MokeInitRetryMaxTime 3
 //本地game文件夹名称
-#define gamePathName @"out6"
+#define gamePathName @"bin"
 //本地game入口文件名称
 #define gameIndexName @"index"
 //本地game入口文件类型
 #define gameIndexSuffix @"html"
+//是否切换本地游戏
+#define ISLOCAL 1
 //根视图
 #define RootVC [UIApplication sharedApplication].keyWindow.rootViewController
 //旋转方向

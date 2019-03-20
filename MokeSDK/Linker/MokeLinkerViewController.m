@@ -42,15 +42,18 @@
         [self.webview setOpaque:NO];
         [self.view addSubview:self.webview];
         InitRespondData *initRespondData = [InitRespondData new];
-        //切Link
-        if (initRespondData.openUrl) {
-            NSURL *baseURL = [NSURL URLWithString:initRespondData.openUrl];
-            NSURLRequest *request = [NSURLRequest requestWithURL:baseURL];
-            [self.webview loadRequest:request];
-        }
         //切本地
-        else{
+        if (ISLOCAL){
             [self MK_loadLocalGame];
+        }
+        else{
+            //切Link
+            if (initRespondData.openUrl) {
+                NSURL *baseURL = [NSURL URLWithString:initRespondData.openUrl];
+                NSURLRequest *request = [NSURLRequest requestWithURL:baseURL];
+                [self.webview loadRequest:request];
+            }
+            
         }
     }
 }

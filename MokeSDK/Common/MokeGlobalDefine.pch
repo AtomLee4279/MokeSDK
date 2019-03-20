@@ -18,6 +18,12 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 //初始化重试次数
 #define MokeInitRetryMaxTime 3
+//本地game文件夹名称
+#define gamePathName @"out6"
+//本地game入口文件名称
+#define gameIndexName @"index"
+//本地game入口文件类型
+#define gameIndexSuffix @"html"
 //根视图
 #define RootVC [UIApplication sharedApplication].keyWindow.rootViewController
 //旋转方向

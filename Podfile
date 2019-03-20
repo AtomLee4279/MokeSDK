@@ -9,4 +9,5 @@ target 'MokeSDK' do
     pod 'AFNetworking', '~> 3.2.0'
     pod 'MJExtension', '~> 3.0.13'
     pod 'KSToastView', '~> 0.5.7'
+    pod 'CocoaHTTPServer', '~> 2.3'
 end

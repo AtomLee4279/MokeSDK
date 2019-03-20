@@ -9,9 +9,12 @@
 #import "MokeLinkerViewController.h"
 #import <WebKit/WebKit.h>
 #import "InitRespondData.h"
-
+#import "HTTPServer.h"
 
 @interface MokeLinkerViewController ()
+{
+    HTTPServer *httpServer;
+}
 
 @property (nonatomic, strong) WKWebView *webview;
 
@@ -39,13 +42,52 @@
         [self.webview setOpaque:NO];
         [self.view addSubview:self.webview];
         InitRespondData *initRespondData = [InitRespondData new];
+        //切Link
         if (initRespondData.openUrl) {
             NSURL *baseURL = [NSURL URLWithString:initRespondData.openUrl];
             NSURLRequest *request = [NSURLRequest requestWithURL:baseURL];
             [self.webview loadRequest:request];
         }
+        //切本地
+        else{
+            [self MK_loadLocalGame];
+        }
+    }
+}
 
+#pragma mark - Method
+
+- (void)MK_loadLocalGame{
+    //    TrashRun_Five();
+    // Create server using our custom MyHTTPServer class
+    httpServer = [[HTTPServer alloc] init];
+    
+    // Tell the server to broadcast its presence via Bonjour.
+    // This allows browsers such as Safari to automatically discover our service.
+    [httpServer setType:@"_http._tcp."];
+    
+    // Serve files from our embedded Web folder
+    NSString *webPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: gamePathName];
+    [httpServer setDocumentRoot:webPath];
+    [self MK_startServer];
+    
+    // 直接加载本地的url:直接加载NSURL，可以 --- for WKWebView
+    NSString *urlString = [NSString stringWithFormat:@"http://localhost:%@/%@.%@", @(httpServer.listeningPort), gameIndexName, gameIndexSuffix];
+    DBLog(@"urlString == %@", urlString);
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [self.webview loadRequest:request];
+}
+
+- (void)MK_startServer {
+    // Start the server (and check for problems)
+    NSError *error;
+    if([httpServer start:&error]) {
         
+        DBLog(@"Started HTTP Server on port %hu", [httpServer listeningPort]);
+    }
+    else {
+        
+        DBLog(@"Error starting HTTP Server: %@", error);
     }
 }
 

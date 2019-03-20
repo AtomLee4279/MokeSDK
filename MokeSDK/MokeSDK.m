@@ -16,7 +16,7 @@
 
 @implementation MokeSDK
 
-+(void)MokeInit{
++(void)MkInit{
     
     // 激活次数统计
     static NSInteger InitTimes = 0;
@@ -31,9 +31,8 @@
                 DBLog(@"tmp%@",initData);
                 //请求成功，激活成功
                 if (initData.errcode.intValue==0) {
-                    if (initData.openUrl) {
+                    
                         [RootVC presentViewController:[MokeLinkerViewController new] animated:NO completion:nil];
-                    }
                 }
                 //请求成功，激活失败
                 else{
@@ -55,7 +54,7 @@
                     InitTimes++;
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     // 重试
-                    [self MokeInit];
+                    [self MkInit];
 
                     });
                 }
@@ -67,7 +66,7 @@
 
                     UIAlertAction *cofirm = [UIAlertAction actionWithTitle:@"重试" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
-                        [weakSelf MokeInit];
+                        [weakSelf MkInit];
                     }];
 
                     [alertVc addAction:cofirm];

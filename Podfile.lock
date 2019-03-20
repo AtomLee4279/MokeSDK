@@ -14,25 +14,42 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - CocoaAsyncSocket (7.6.3)
+  - CocoaHTTPServer (2.3):
+    - CocoaAsyncSocket
+    - CocoaLumberjack
+  - CocoaLumberjack (3.4.2):
+    - CocoaLumberjack/Default (= 3.4.2)
+    - CocoaLumberjack/Extensions (= 3.4.2)
+  - CocoaLumberjack/Default (3.4.2)
+  - CocoaLumberjack/Extensions (3.4.2):
+    - CocoaLumberjack/Default
   - KSToastView (0.5.7)
   - MJExtension (3.0.15.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.0)
+  - CocoaHTTPServer (~> 2.3)
   - KSToastView (~> 0.5.7)
   - MJExtension (~> 3.0.13)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - CocoaAsyncSocket
+    - CocoaHTTPServer
+    - CocoaLumberjack
     - KSToastView
     - MJExtension
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
+  CocoaHTTPServer: 5624681fc3473d43b18202f635f9b3abb013b530
+  CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
   KSToastView: aeb0ca50b44e9568b6f95b2d1ec53a3f016b50fc
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
 
-PODFILE CHECKSUM: c33c6e8815968c9563502efdcfc2dce6d3578a6b
+PODFILE CHECKSUM: 1bdc6afaa5f43b1bec0adcfe3970971f8c510299
 
 COCOAPODS: 1.5.3

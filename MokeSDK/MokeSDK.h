@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MokeSDK : NSObject
 
-+(void)MokeInit;
++(void)MkInit;
 
 @end
 

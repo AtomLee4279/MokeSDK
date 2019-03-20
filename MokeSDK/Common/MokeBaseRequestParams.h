@@ -49,8 +49,14 @@ NS_ASSUME_NONNULL_BEGIN
 /* 是否映射（对应具体的一套映射） */
 @property(nonatomic, copy) NSString *sdkTag;
 
+/*是否对请求传参进行AES-encode的判断标志位*/
+@property(nonatomic, copy) NSString *isEnUrl;
+
 /* 映射的url*/
 @property(nonatomic, copy) NSString *baseUrl;
+
+/*拼接计算sign值的gamekey*/
+@property(nonatomic, copy) NSString *gameKey;
 @end
 
 NS_ASSUME_NONNULL_END

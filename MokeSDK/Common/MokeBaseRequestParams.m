@@ -10,8 +10,8 @@
 #import <AdSupport/AdSupport.h>
 #include <sys/sysctl.h>
 
-
-#define TEXT @"94ZX3hn7yugA559B9+RaRstQS4zjpbERmWlPDc8OYQVdKJqLqqXzKcZzUFKskPgd8cU94sxvPctpwthlSWMjCrtYjsO/4yBwjMRiLvl6Tw99Bs47zyk+MojLvKeWwyxb2EVCZrcfCjixbtQnkCDvidfSqrJN9hSI7/c7Tq1IftH4yqykyrKUgV4Hza1HvqynGPMCcktmIljpnyLn4JVAPfOA03bZOIJgFzryGmFTYAwikJFH9IosU8CSBmvV3ZAhQmX5zfZ+kagaD5hOlqcnwpJgJ21XkvnDrAWYO4UGPiOffKXR/o5U2i910k7JZzg8UK8UvFb+i/zfTuD85Xg1ojryi3kZk/U7d+d0DPMMdaI="
+//50fkj4
+#define TEXT @"94ZX3hn7yugA559B9+RaRstQS4zjpbERmWlPDc8OYQVdKJqLqqXzKcZzUFKskPgd861Fu8VeINHWdT+muGDeuVdUMnSKk1jshx8Shl0eb2bGtCGB19+PdPcTjynecUuAPz8FJGsLfPXcQcshxYHsEAHmQsYdU3Mh/ghaLo+878FRmrHgZtA/+1tqaJGZF0as5pD/jidBye5VhCX/0Y9fX1PVuk52kRFhgIz8WsyQ/noNuYqw+3SLsnGYi3ONRcuz7Ugm5NAPlcrRPJlpZNPIsrK3n6H2UO3qwgAPwRoz1f91dPzFN/I3nKVKHHAuBR8axOtxAmTnJ/+tYLAtJhDqlCt+7FaU7vpIiqbVYCSX7n88uwp0WV9F9TjkzmB0Ecvv"
 
 @interface MokeBaseRequestParams()
 
@@ -39,7 +39,7 @@
     if (_pid) {
         return _pid;
     }
-    _pid = MK_REPLACE_NIL(self.parsingParams[PID],@"");
+    _pid = MK_REPLACE_NIL([MokeBaseRequestParams parsingParams][PID],@"");
     return _pid;
 }
 
@@ -49,7 +49,7 @@
         return _gid;
     }
     
-    _gid = MK_REPLACE_NIL(self.parsingParams[GID],@"");
+    _gid = MK_REPLACE_NIL([MokeBaseRequestParams parsingParams][GID],@"");
     return _gid;
 }
 
@@ -59,7 +59,7 @@
         return _refer;
     }
     
-    _refer = MK_REPLACE_NIL(self.parsingParams[REFER],@"");
+    _refer = MK_REPLACE_NIL([MokeBaseRequestParams parsingParams][REFER],@"");
     return _refer;
 }
 
@@ -69,7 +69,7 @@
         return _version;
     }
     
-    _version = MK_REPLACE_NIL(self.parsingParams[VERSION],@"");
+    _version = MK_REPLACE_NIL([MokeBaseRequestParams parsingParams][VERSION],@"");
     return _version;
 }
 
@@ -79,7 +79,7 @@
         return _sversion;
     }
     
-    _sversion = MK_REPLACE_NIL(self.parsingParams[SVERSION],@"");
+    _sversion = MK_REPLACE_NIL([MokeBaseRequestParams parsingParams][SVERSION],@"");
     return _sversion;
 }
 
@@ -130,7 +130,7 @@
         return _locale;
     }
     
-    _locale = MK_REPLACE_NIL(self.parsingParams[LOCALE],@"");
+    _locale = MK_REPLACE_NIL([MokeBaseRequestParams parsingParams][LOCALE],@"");
     return _locale;
 }
 
@@ -141,7 +141,7 @@
         return _sdkTag;
     }
     
-    _sdkTag = MK_REPLACE_NIL(self.parsingParams[SDKTAG],@"");
+    _sdkTag = MK_REPLACE_NIL([MokeBaseRequestParams parsingParams][SDKTAG],@"");
     return _sdkTag;
 }
 
@@ -151,20 +151,37 @@
         return _baseUrl;
     }
     
-    _baseUrl = MK_REPLACE_NIL(self.parsingParams[BASEURL],@"");
+    _baseUrl = MK_REPLACE_NIL([MokeBaseRequestParams parsingParams][BASEURL],@"");
     return _baseUrl;
 }
 
--(NSDictionary *)parsingParams {
+- (NSString *)isEnUrl {
     
-    if (_parsingParams) {
-        return _parsingParams;
+    if (_isEnUrl) {
+        return _isEnUrl;
     }
+    
+    _isEnUrl = MK_REPLACE_NIL([MokeBaseRequestParams parsingParams][ISENURL],@"");
+    return _isEnUrl;
+}
+
+- (NSString *)gamKey {
+    
+    if (_gameKey) {
+        return _gameKey;
+    }
+    
+    _gameKey = MK_REPLACE_NIL([MokeBaseRequestParams parsingParams][@"gamekey"],@"");
+    return _gameKey;
+}
+
++(NSDictionary *)parsingParams {
+    
     NSError *err;
     NSString *configStr = [AMAES AMCBCDecrypt:TEXT];
     NSData *jsonData = [configStr dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *localData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
-    _parsingParams = localData;
-    return _parsingParams;
+    return localData;
 }
 @end
+//

@@ -13,7 +13,7 @@
 #import "MokeMD5.h"
 #import "AMAES.h"
 
-#define signedGameKey @"2PoILqbar1RZNyBh6we*79DGx8Y+3EFf"
+#define gamekey @"2PoILqbar1RZNyBh6we*79DGx8Y+3EFf"
 
 @interface MokeNetworking ()
 
@@ -49,7 +49,7 @@
         success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
         failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure {
 
-    NSMutableDictionary *dict = [MokeNetworking processParameters:parameters] ;
+    NSMutableDictionary *dict = [MokeNetworking processParameters:parameters];
     //       //AES解密
     ////        if ([mkBaseReqParams.isEnUrl boolValue]) {
     ////            NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -60,6 +60,7 @@
     [[MokeNetworking new].manager POST:URLString parameters:dict progress:uploadProgress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 //        NSLog(@"==MokeNetWorking:respondObject%@==",responseObject);
         if (success) {
+//            NSString *nameStr =  [[NSString alloc]initWithData: responseObject encoding:NSUTF8StringEncoding];
             success(task,responseObject);
         }
         
@@ -88,6 +89,7 @@
     _manager.requestSerializer.timeoutInterval = 30.f;
 //    _manager.requestSerializer = [AFJSONRequestSerializer serializer]; // 上传JSON格式
 //    _manager.responseSerializer = [AFJSONResponseSerializer serializer];//返回json格式
+//    _manager.responseSerializer = [AFHTTPResponseSerializer serializer];//返回data
     return _manager;
 }
 
@@ -131,12 +133,118 @@
         [paramStr appendString:[NSString stringWithFormat:@"&%@=%@", key, publicParams[key]]];
     }
     //拼接signKey
-    NSString *strBeforeSign = [NSString stringWithFormat:@"%@&%@",[paramStr substringFromIndex:1],signedGameKey];
+    NSString *strBeforeSign = [NSString stringWithFormat:@"%@&%@",[paramStr substringFromIndex:1],mkBaseReqParams.gameKey];
     //md5
     NSString *md5Str = [MokeMD5 MokeHashString:strBeforeSign];
     [publicParams setObject:md5Str forKey:SIGN];
     return publicParams;
 
+}
+
+/**
+ POST
+ 
+ @param URLString url string
+ @param parameters parameters
+ @param uploadProgress upload progress
+ @param success 请求成功
+ @param failure 请求失败
+ */
++ (void)mk_POST:(NSString *)URLString
+     parameters:(nullable id)parameters
+       progress:(nullable void (^)(NSProgress *uploadProgress))uploadProgress
+        success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+        failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure{
+    
+    NSURL *url = [NSURL URLWithString:URLString];
+    NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    //整理传参
+    NSString * tmpStr= [MokeNetworking MKDealtParams:parameters];
+    //AES-Encode
+    tmpStr = [AMAES AMECBEncrypt:tmpStr encryptKey:@""];
+//    NSString *tmp =
+    //string->data
+    NSData * data=[tmpStr dataUsingEncoding:NSUTF8StringEncoding];
+    //设置请求头
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    // 设置body
+    [request setHTTPBody:data];
+    
+    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+    //这里根据后台的配置来配置
+    AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
+    responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",
+                                                 @"text/html",
+                                                 @"text/json",
+                                                 @"text/javascript",
+                                                 @"text/plain",
+                                                 nil];
+    manager.responseSerializer = responseSerializer;
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.requestSerializer.timeoutInterval=15;//设置超时时间
+  
+    [[manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        
+        NSString *responseString =  [[NSString alloc]initWithData: responseObject encoding:NSUTF8StringEncoding];
+        //ECB-Decrpt
+        NSString * responseAES = [AMAES AMECBDecrypt:responseString encryptKey:@""];
+        responseAES =[responseAES stringByTrimmingCharactersInSet:[NSCharacterSet controlCharacterSet]];
+        NSData *tmpData = [responseAES dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *respondDic = [NSJSONSerialization JSONObjectWithData:tmpData options:NSJSONReadingAllowFragments error:nil];
+         NSLog(@"==mk:nameStr==%@",respondDic);
+        if (success&&(![respondDic[ERRCODE] boolValue])) {
+            success(NULL,respondDic);
+        }
+        
+    }] resume];
+}
+
++ (NSString *)MKDealtParams:(nullable id)parameters {
+    
+    MokeBaseRequestParams *mkBaseReqParams = parameters;
+    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:
+                           @{
+                             
+                             PID         : mkBaseReqParams.pid,
+                             GID         : mkBaseReqParams.gid,
+                             REFER       : mkBaseReqParams.refer,
+                             VERSION     : mkBaseReqParams.version,
+                             SVERSION    : mkBaseReqParams.sversion,
+                             TIME        : mkBaseReqParams.time,
+                             DEV         : mkBaseReqParams.dev,
+                             IDFA        : mkBaseReqParams.idfa,
+                             IDFV        : mkBaseReqParams.idfv,
+                             LOCALE      : mkBaseReqParams.locale,
+                             SDKTAG      : mkBaseReqParams.sdkTag,
+                             
+                             }];
+    
+    /* Sign组装 */
+    NSString *paramStr = [self AMArrangeDicToNetParams:dict];
+    NSString *originalSign = [NSString stringWithFormat:@"%@&%@", paramStr, gamekey];
+    NSLog(@"originalSign:%@,gamekey:%@", originalSign,gamekey);
+    //MD5
+    NSString *sign = [MokeMD5 MokeHashString:originalSign];
+    [dict setValue:sign forKey:SIGN];
+    NSLog(@"==MKDealtParams:%@==",[self AMArrangeDicToNetParams:dict]);
+    return [self AMArrangeDicToNetParams:dict];
+}
+
++ (NSString *)AMArrangeDicToNetParams:(NSDictionary *)dic {
+    
+    /* key升序 */
+    NSArray *allKeyArray = [dic allKeys];
+    NSArray *afterSortKeyArray = [allKeyArray sortedArrayUsingComparator:^NSComparisonResult(id _Nonnull obj1, id _Nonnull obj2) {
+        return [obj1 compare:obj2];
+    }];
+    
+    /* 按key升序读取 */
+    NSMutableString *paramStr = [NSMutableString string];
+    for (NSString *key in afterSortKeyArray) {
+        [paramStr appendString:[NSString stringWithFormat:@"&%@=%@", key, dic[key]]];
+    }
+    return [paramStr substringFromIndex:1];
 }
 
 

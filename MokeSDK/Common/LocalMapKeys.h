@@ -4,13 +4,13 @@
 //
 //  Created by 李一贤 on 2019/3/18.
 //  Copyright © 2019 李一贤. All rights reserved.
-////======请求和响应的映射key=========
+////======请求和响应相关的映射key=========
 
 #ifndef LocalMapKeys_h
 #define LocalMapKeys_h
 
 /** 初始化映射后的url */
-//#define BaseURLString @"http://api.49rj04.com/s/sdk/active"
+#define BaseURLString @"http://api.49rj04.com/s/sdk/active"
 //#define URL_Active @""
 
 #pragma mark - Request-MapingKeys
@@ -27,6 +27,7 @@
 #define IDFV @"koalaJ"
 #define LOCALE @"koalaM"
 #define SDKTAG @"i"
+#define ISENURL @"koalahh"
 #define BASEURL @"koalaii"
 
 #pragma  mark - Respond-MapingKeys

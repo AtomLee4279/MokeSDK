@@ -31,4 +31,12 @@
 /* 判空 */
 #define MK_IS_EMPTY(str) ((str) == nil || [(str) isKindOfClass:[NSNull class]] || [(str) isEqual:@""])
 
+//输出log
+#define OPEN_LOG @"主动关闭Log ： 把这一行注释掉"
+#ifdef OPEN_LOG // 开启log
+#define DBLog(fmt,...) NSLog((@"【方法名】：%s\n""#Koala DEBUG# " fmt), __func__, ##__VA_ARGS__)
+#else // 关闭log
+#define DBLog(fmt,...)
+#endif
+
 #endif /* PrefixHeader_pch */

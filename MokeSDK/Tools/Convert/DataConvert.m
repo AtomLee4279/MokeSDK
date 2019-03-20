@@ -22,7 +22,7 @@
     
     if (!jsonData) {
         
-        NSLog(@"%@",error);
+        DBLog(@"%@",error);
         
     }else{
         
@@ -61,7 +61,7 @@
                                                           error:&err];
     if(err)
     {
-        NSLog(@"json解析失败：%@",err);
+        DBLog(@"json解析失败：%@",err);
         return nil;
     }
     return dic;

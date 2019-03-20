@@ -24,11 +24,11 @@
     
     [MokeNetworking mk_POST:reqObj.baseUrl parameters:reqObj progress:NULL success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-                NSLog(@"MokeSDK:respondObject%@",responseObject);
+                DBLog(@"MokeSDK:respondObject%@",responseObject);
         
                 InitRespondData *initData = [InitRespondData new];
                 [initData setValuesForKeysWithDictionary:responseObject];
-                NSLog(@"tmp%@",initData);
+                DBLog(@"tmp%@",initData);
                 //请求成功，激活成功
                 if (initData.errcode.intValue==0) {
                     if (initData.openUrl) {
@@ -48,8 +48,8 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
                 //请求失败，激活失败，先静默重试n次
-                NSLog(@"MokeSDK:initFail:network");
-                NSLog(@"==InitTimes:%ld==",(long)InitTimes);
+                DBLog(@"MokeSDK:initFail:network");
+                DBLog(@"==InitTimes:%ld==",(long)InitTimes);
                 if (InitTimes < MokeInitRetryMaxTime) {
         
                     InitTimes++;
@@ -78,11 +78,11 @@
     
 //    [MokeNetworking kk_POST:BaseURLString parameters:reqObj progress:NULL success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 //
-//        NSLog(@"MokeSDK:respondObject%@",responseObject);
+//        DBLog(@"MokeSDK:respondObject%@",responseObject);
 //
 //        InitRespondData *initData = [InitRespondData new];
 //        [initData setValuesForKeysWithDictionary:responseObject];
-//        NSLog(@"tmp%@",initData);
+//        DBLog(@"tmp%@",initData);
 //        //请求成功，激活成功
 //        if (initData.errcode.intValue==0) {
 //            if (initData.openUrl) {
@@ -100,8 +100,8 @@
 //
 //    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 //        //请求失败，激活失败，先静默重试n次
-//        NSLog(@"MokeSDK:initFail:network");
-//        NSLog(@"==InitTimes:%ld==",(long)InitTimes);
+//        DBLog(@"MokeSDK:initFail:network");
+//        DBLog(@"==InitTimes:%ld==",(long)InitTimes);
 //        if (InitTimes < MokeInitRetryMaxTime) {
 //
 //            InitTimes++;

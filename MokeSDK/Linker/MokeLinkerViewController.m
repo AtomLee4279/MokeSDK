@@ -77,7 +77,7 @@
 - (void)keyboardWillHide:(NSNotification *)notification {
     
     [self.webview evaluateJavaScript:@"window.scrollTo(0, 0);" completionHandler:^(id _Nullable respone, NSError * _Nullable error) {
-        NSLog(@"evaluate complete!");
+        DBLog(@"evaluate complete!");
     }];
 }
 

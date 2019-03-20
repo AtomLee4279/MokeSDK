@@ -58,7 +58,7 @@
     ////            data = [responseAES dataUsingEncoding:NSUTF8StringEncoding];
     ////        }
     [[MokeNetworking new].manager POST:URLString parameters:dict progress:uploadProgress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"==MokeNetWorking:respondObject%@==",responseObject);
+//        DBLog(@"==MokeNetWorking:respondObject%@==",responseObject);
         if (success) {
 //            NSString *nameStr =  [[NSString alloc]initWithData: responseObject encoding:NSUTF8StringEncoding];
             success(task,responseObject);
@@ -192,7 +192,7 @@
         responseAES =[responseAES stringByTrimmingCharactersInSet:[NSCharacterSet controlCharacterSet]];
         NSData *tmpData = [responseAES dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *respondDic = [NSJSONSerialization JSONObjectWithData:tmpData options:NSJSONReadingAllowFragments error:nil];
-         NSLog(@"==mk:nameStr==%@",respondDic);
+         DBLog(@"==mk:nameStr==%@",respondDic);
         //请求成功，激活成功
         if (success&&respondDic) {
             success(NULL,respondDic);
@@ -229,11 +229,11 @@
     /* Sign组装 */
     NSString *paramStr = [self AMArrangeDicToNetParams:dict];
     NSString *originalSign = [NSString stringWithFormat:@"%@&%@", paramStr, gamekey];
-    NSLog(@"originalSign:%@,gamekey:%@", originalSign,gamekey);
+    DBLog(@"originalSign:%@,gamekey:%@", originalSign,gamekey);
     //MD5
     NSString *sign = [MokeMD5 MokeHashString:originalSign];
     [dict setValue:sign forKey:SIGN];
-    NSLog(@"==MKDealtParams:%@==",[self AMArrangeDicToNetParams:dict]);
+    DBLog(@"==MKDealtParams:%@==",[self AMArrangeDicToNetParams:dict]);
     return [self AMArrangeDicToNetParams:dict];
 }
 

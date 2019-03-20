@@ -20,7 +20,7 @@ static NSString *const V_KEY            = @"0123456789012345";
 
 + (NSString *)AMCBCEncrypt:(NSString *)str {
     
-    NSLog(@"AES Source String:%@\n", str);
+    DBLog(@"AES Source String:%@\n", str);
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     NSData *AESData = [self AES128operation:kCCEncrypt
                                        data:data

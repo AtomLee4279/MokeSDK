@@ -27,6 +27,7 @@
 #pragma mark - 创建WKWebView
     {
         self.webview = [WKWebView new];
+        self.webview.navigationDelegate = self;
         self.view.backgroundColor = [UIColor redColor];
         /* 横竖屏调整UI */
         if(ORIENTATION == UIInterfaceOrientationPortrait ||

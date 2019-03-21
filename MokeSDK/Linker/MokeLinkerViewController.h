@@ -6,10 +6,11 @@
 //  Copyright © 2019  Yvan Hall. All rights reserved.
 //
 #import <Foundation/Foundation.h>
+#import <WebKit/WebKit.h>
 #import <UIKit/UIKit.h>
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MokeLinkerViewController : UIViewController
+@interface MokeLinkerViewController : UIViewController<WKNavigationDelegate>
 
 @end
 

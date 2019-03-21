@@ -62,11 +62,12 @@
                     InitTimes = 0;
                     // 超过n次,弹出重试确认框
                     __weak __typeof(self)weakSelf = self;
-                    NSString *title = NSLocalizedString(@"提示", @"标题");
-                    NSString *content = NSLocalizedString(@"网络原因，是否重试？",@"内容");
+                    NSString *title = NSLocalizedString(@"提示", nil);
+                    NSString *content = NSLocalizedString(@"网络原因，是否重试？",nil);
+                    NSString *retry = NSLocalizedString(@"重试",nil);
                     UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:title message:content preferredStyle:UIAlertControllerStyleAlert];
 
-                    UIAlertAction *cofirm = [UIAlertAction actionWithTitle:@"重试" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    UIAlertAction *cofirm = [UIAlertAction actionWithTitle:retry style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
                         [weakSelf MkInit];
                     }];

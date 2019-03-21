@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  MokeSDK
+
+  Created by 李一贤 on 2019/3/21.
+  Copyright © 2019 李一贤. All rights reserved.
+*/
+"提示" = "Tip";
+"网络原因，是否重试？" = "Network reason,retry?";
+"重试" = "Retry";

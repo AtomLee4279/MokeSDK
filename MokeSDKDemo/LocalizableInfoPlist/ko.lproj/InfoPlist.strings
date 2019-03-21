@@ -1,0 +1,8 @@
+/* 
+  InfoPlist.strings
+  MokeSDK
+
+  Created by 李一贤 on 2019/3/21.
+  Copyright © 2019 李一贤. All rights reserved.
+*/
+CFBundleDisplayName = "드래곤 시티 지키기";

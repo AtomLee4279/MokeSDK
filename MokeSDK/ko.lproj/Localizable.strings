@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  MokeSDK
+
+  Created by 李一贤 on 2019/3/21.
+  Copyright © 2019 李一贤. All rights reserved.
+*/
+"提示" = "프롬프트";
+"网络原因，是否重试？" = "네트워크상의 이유로 다시 시도 하시겠습니까?";
+"重试" = "다시 시도하십시오.";

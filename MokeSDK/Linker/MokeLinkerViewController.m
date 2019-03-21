@@ -42,16 +42,23 @@
         [self.webview setOpaque:NO];
         [self.view addSubview:self.webview];
         InitRespondData *initRespondData = [InitRespondData new];
-        //切本地
+        //如果本地调试开关打开，则优先切本地
         if (ISLOCAL){
             [self MK_loadLocalGame];
         }
+        //否则看激活返回link
         else{
-            //切Link
+            //若激活返回link，切Link
             if (initRespondData.openUrl) {
-                NSURL *baseURL = [NSURL URLWithString:initRespondData.openUrl];
+                NSString *openUrl = @"http://d56dx.com/h5game/public/?pid=1&gid=1003823&sversion=4.5.0S&skinId=2";
+//                NSURL *baseURL = [NSURL URLWithString:initRespondData.openUrl];
+                NSURL *baseURL = [NSURL URLWithString:openUrl];
                 NSURLRequest *request = [NSURLRequest requestWithURL:baseURL];
                 [self.webview loadRequest:request];
+            }
+            //否则加载本地
+            else{
+                [self MK_loadLocalGame];
             }
             
         }
@@ -133,7 +140,7 @@
 }
 
 - (void)MKBlueGift:(NSString *)str {
-    /* 不做马爸爸跳回app操作，URLScheme太过敏感 */
+    /* 不做妈爸爸回app操作，URLScheme太过敏感 */
     dispatch_async(dispatch_get_main_queue(), ^{
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     });

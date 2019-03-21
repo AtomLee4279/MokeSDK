@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  MokeSDK
+
+  Created by 李一贤 on 2019/3/21.
+  Copyright © 2019 李一贤. All rights reserved.
+*/
+// Localizable App Name是App在英语环境环境下显示的名称
+CFBundleDisplayName = "Guard the Dragon Castle";

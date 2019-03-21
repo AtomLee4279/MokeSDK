@@ -50,8 +50,11 @@ extern char* decryptConstString(char* string) {
 /*异或字符串*/
 #define XOR_NSSTRING(string) [NSString stringWithUTF8String:decryptConstString(string)]
 
-//输出log
+//输出log:debug时才打印，release时不打印
+#ifdef DEBUG
 #define OPEN_LOG @"主动关闭Log ： 把这一行注释掉"
+#endif
+
 #ifdef OPEN_LOG // 开启log
 #define DBLog(fmt,...) NSLog((@"【方法名】：%s\n""#Koala DEBUG# " fmt), __func__, ##__VA_ARGS__)
 #else // 关闭log

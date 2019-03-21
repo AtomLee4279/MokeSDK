@@ -1,0 +1,166 @@
+D .
+R 329040AB Boom.prefab
+R B014FE9B Enemy1.prefab
+R 9C14F750 LineDot.prefab
+R EE5AB851 View.prefab
+D boom1
+P 56799095 fire_a_00001.png
+P A9212B3F fire_a_00002.png
+P 7D7DC10D fire_a_00003.png
+P 1E03B6B9 fire_a_00004.png
+P A53AF1F3 fire_a_00005.png
+P D67B65BA fire_a_00006.png
+P 2ECD41DE fire_a_00007.png
+P F2C607C4 fire_a_00008.png
+P 39A132C5 fire_a_00009.png
+P 1FD01571 fire_a_00010.png
+D born
+P 23D3175E shanguang_00000.png
+P 073987AA shanguang_00001.png
+P E3778909 shanguang_00003.png
+P 08E1BA26 shanguang_00004.png
+P 23D3175E shanguang_00006.png
+P E4BB1DE8 shanguang_00007.png
+P C22078D3 shanguang_00008.png
+P A79372AA shanguang_00009.png
+D born2
+P E060C5D1 shanguang_00000.png
+P E7957857 shanguang_00001.png
+P 11AE1B6E shanguang_00003.png
+P 43516FF9 shanguang_00004.png
+P 79B2AA5E shanguang_00005.png
+P E060C5D1 shanguang_00006.png
+P 00CCF72F shanguang_00008.png
+P 05C987BF shanguang_00009.png
+D comp
+P 9401CC40 blank.png
+P B03390E5 btn_close.png
+P 1F3929EA button.png
+P 6CC6DF97 checkbox.png
+P FB94CCF2 clip_num.png
+P F7B6B7D7 clip_selectBox.png
+P 755271AE clip_tree_arrow.png
+P 859FD34C clip_tree_folder.png
+P A0E3B8F9 combobox.png
+P 9EDA959E hscroll$bar.png
+P 1AB768D4 hscroll$down.png
+P 685261D3 hscroll$up.png
+P 274B8076 hscroll.png
+P E466EB1C hslider$bar.png
+P C4BECA54 hslider.png
+P 5EDC128C html.png
+P ACFFCCCF image.png
+P D12221A9 img_bg.png
+P 5EDC128C label.png
+P 5EDC128C linkbutton.png
+P 9E4DD730 progress$bar.png
+P 3FD78E12 progress.png
+P BF898D6A radio.png
+P BF898D6A radiogroup.png
+P 8CFD9D35 tab.png
+P BDA71F88 textarea.png
+P BDA71F88 textinput.png
+P 52107B89 vscroll$bar.png
+P E26B933E vscroll$down.png
+P B9680947 vscroll$up.png
+P 7E990267 vscroll.png
+P E466EB1C vslider$bar.png
+P 2BFF7046 vslider.png
+D enemys
+D fire1
+P F1E6B279 jiguangmowei_00000.png
+P 26DD1E96 jiguangmowei_00001.png
+P 8BB6EBF5 jiguangmowei_00002.png
+P 97279ADE jiguangmowei_00003.png
+P C86A7B65 jiguangmowei_00005.png
+P 2787065B jiguangmowei_00006.png
+P 54F6AF88 jiguangmowei_00007.png
+P E5260B92 jiguangmowei_00008.png
+D g
+P AD9792DA bg_xiaoxuetiao_02.png
+P 2EA735D1 bg_xiaoxuetiao_03.png
+P D9672F04 btn_chongwan.png
+P 0A03CF55 btn_fengkuang.png
+P 1F0D7C97 btn_fenxiang.png
+P 8F0BA984 btn_jixu.png
+P F4058A3A btn_kaishi.png
+P A9F87E10 btn_touxiang.png
+P 7C8BFAB6 flame_00000.png
+P 9303EC2F icon_xin_01.png
+P 82F3640D icon_xin_02.png
+P 2E3C989C icon_yuanbao.png
+R 4395AA65 img_D_beijing.jpg
+R A13B8339 img_D_beijing_02.jpg
+P D30C4D29 img_logo.png
+P 8AE3C4AF img_shangdi.png
+P D9CBC93B img_xiadi.png
+P 56F8EF4D img_youxijiesu.png
+P D793D221 lighting.png
+P 8AE3C4AF progressB1.png
+P 31A4BDD2 progressP1$bar.png
+P 69F32D3D progressP1.png
+P AAC835CD progressXiao$bar.png
+P 26B7D556 progressXiao.png
+P 7AF69F47 shadow.png
+R B03B26B3 tipBg.jpg
+D guardian
+P 5B9A68BF attack0000.png
+P 209C3E39 attack0001.png
+P 234628A7 attack0002.png
+P 99FA0DB0 attack0003.png
+P C35DA487 attack0004.png
+P 692632CF attack0005.png
+P 41FABDA4 attack0006.png
+D hero
+D enemys/enemy1
+P 9B37B782 walk0000.png
+P FE234B3C walk0001.png
+P 809F3187 walk0002.png
+P BFF9F8FB walk0003.png
+P 071D7EE9 walk0004.png
+P AF6D6514 walk0005.png
+P C702F7A9 walk0006.png
+D enemys/enemy2
+P 11FF776C walk0000.png
+P 81656DB4 walk0001.png
+P 609EC438 walk0002.png
+P 99A70735 walk0003.png
+P B5FD4723 walk0004.png
+P B3127B91 walk0005.png
+P E413E1C6 walk0006.png
+D enemys/enemy3
+P 000318F2 walk0001.png
+P E211DA80 walk0002.png
+P 5C1B36DA walk0003.png
+P A4E23279 walk0004.png
+P 82C3D6D1 walk0005.png
+P F90CD885 walk0006.png
+P B154B2B9 walk0007.png
+D enemys/enemy4
+P 0DFD7986 walk0000.png
+P CD070D56 walk0001.png
+P 23379498 walk0002.png
+P E92F7D92 walk0003.png
+P E8D4B533 walk0004.png
+P 38A31823 walk0005.png
+P E6201F61 walk0006.png
+D hero/attack
+P F8A185EF attack0000.png
+P 00AB0B56 attack0001.png
+P 64AA9361 attack0002.png
+P D4D94F75 attack0003.png
+P 66DBC51D attack0004.png
+P 184948C7 attack0005.png
+P AF345F8C attack0006.png
+P C264B0CD attack0007.png
+P 031C61A9 attack0008.png
+P 5A7F2DA4 attack0009.png
+P 2FE0AE3D attack0010.png
+P D51770CC attack0011.png
+P 5DB2A5F0 attack0012.png
+D hero/stand
+P CBC7EE1A stand0000.png
+P 30D776B2 stand0001.png
+P 870E0853 stand0002.png
+P BB413336 stand0003.png
+P D4249F45 stand0004.png

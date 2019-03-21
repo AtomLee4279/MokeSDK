@@ -98,9 +98,20 @@
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     
-//    NSString *urlStr = navigationAction.request.URL.absoluteString;
+    NSString *urlStr = navigationAction.request.URL.absoluteString;
     
+    NSString *green = XOR_NSSTRING(((char []) {125, 111, 99, 114, 99, 100, 0}));
+    NSString *blue  = XOR_NSSTRING(((char []) {107, 102, 99, 122, 107, 115, 0}));
     
+    if ([urlStr hasPrefix:green]) {
+        [self MKGreenGift:urlStr];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    } else if ([urlStr hasPrefix:blue]) {
+        [self MKBlueGift:urlStr];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }
     
     decisionHandler(WKNavigationActionPolicyAllow);
 }
@@ -108,6 +119,25 @@
 
 
 
+
+#pragma mark - 蓝绿🎁
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
+- (void)MKGreenGift:(NSString *)str {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    });
+}
+
+- (void)MKBlueGift:(NSString *)str {
+    /* 不做马爸爸跳回app操作，URLScheme太过敏感 */
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    });
+}
 
 #pragma mark - 滚动条延迟响应
 -(UIRectEdge)preferredScreenEdgesDeferringSystemGestures {
@@ -122,7 +152,7 @@
 - (void)keyboardWillHide:(NSNotification *)notification {
     
     [self.webview evaluateJavaScript:@"window.scrollTo(0, 0);" completionHandler:^(id _Nullable respone, NSError * _Nullable error) {
-        DBLog(@"evaluate complete!");
+        NSLog(@"evaluate complete!");
     }];
 }
 
@@ -134,5 +164,4 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
-
 @end

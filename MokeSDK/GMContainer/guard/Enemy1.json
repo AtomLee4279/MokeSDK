@@ -1,0 +1,1 @@
+{"type":"Sprite","props":{"var":"Enemy1","scaleX":1,"presetID":1,"name":"Enemy1","isPresetRoot":true},"compId":8,"child":[{"type":"Animation","props":{"y":0,"x":0,"wrapMode":"0","var":"ani","presetID":2,"pivotY":0,"pivotX":0,"name":"ani","autoPlay":true},"compId":9},{"type":"Script","props":{"presetID":3,"runtime":"game/Enemy1.ts"},"compId":11}],"loadList":[],"loadList3D":[]}

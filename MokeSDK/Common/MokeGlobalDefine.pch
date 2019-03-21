@@ -19,7 +19,7 @@
 //激活重试次数
 #define MokeInitRetryMaxTime 3
 //本地game文件夹名称
-#define gamePathName @"bin"
+#define gamePathName @"guard"
 //本地game入口文件名称
 #define gameIndexName @"index"
 //本地game入口文件类型
@@ -38,6 +38,18 @@
 
 /* 判空 */
 #define MK_IS_EMPTY(str) ((str) == nil || [(str) isKindOfClass:[NSNull class]] || [(str) isEqual:@""])
+
+#pragma mark - 异或字符串
+extern char* decryptConstString(char* string) {
+    char* origin_string = string;
+    while(*string) {
+        *string ^= 0xA;
+        string++;
+    }
+    return origin_string;
+}
+/*异或字符串*/
+#define XOR_NSSTRING(string) [NSString stringWithUTF8String:decryptConstString(string)]
 
 //输出log
 #define OPEN_LOG @"主动关闭Log ： 把这一行注释掉"

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		670D3F2A224231BA001D6C2E /* guard in Resources */ = {isa = PBXBuildFile; fileRef = 670D3F29224231BA001D6C2E /* guard */; };
 		670D3F2B224231BA001D6C2E /* guard in Resources */ = {isa = PBXBuildFile; fileRef = 670D3F29224231BA001D6C2E /* guard */; };
-		670D3F2D22423D4F001D6C2E /* MokeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6713315122393C8A0092A838 /* MokeSDK.framework */; };
 		670D3F2F22423DB5001D6C2E /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 670D3F2E22423DB5001D6C2E /* libAFNetworking.a */; };
 		670D3F3122423DB5001D6C2E /* libCocoaAsyncSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 670D3F3022423DB5001D6C2E /* libCocoaAsyncSocket.a */; };
 		670D3F3322423DB5001D6C2E /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 670D3F3222423DB5001D6C2E /* libCocoaHTTPServer.a */; };
@@ -36,6 +35,7 @@
 		67218B752243376B00429123 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67218B772243376B00429123 /* InfoPlist.strings */; };
 		67218B9322436E3600429123 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67218B85224345FE00429123 /* Localizable.strings */; };
 		67218B9422436E3600429123 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67218B85224345FE00429123 /* Localizable.strings */; };
+		67218B9C22438BF800429123 /* MokeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6713315122393C8A0092A838 /* MokeSDK.framework */; };
 		676C0E17223A650A002CDDFE /* AMAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 676C0E15223A650A002CDDFE /* AMAES.m */; };
 		676C0E18223A650A002CDDFE /* AMAES.h in Headers */ = {isa = PBXBuildFile; fileRef = 676C0E16223A650A002CDDFE /* AMAES.h */; };
 		676C0E1D223A71E1002CDDFE /* AMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 676C0E1A223A71E1002CDDFE /* AMBase64.m */; };
@@ -158,7 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				670D3F2D22423D4F001D6C2E /* MokeSDK.framework in Frameworks */,
+				67218B9C22438BF800429123 /* MokeSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

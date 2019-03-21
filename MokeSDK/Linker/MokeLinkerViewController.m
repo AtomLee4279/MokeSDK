@@ -50,10 +50,10 @@
         //否则看激活返回link
         else{
             //若激活返回link，切Link
-            if (initRespondData.openUrl) {
-                NSString *openUrl = @"http://d56dx.com/h5game/public/?pid=1&gid=1003823&sversion=4.5.0S&skinId=2";
-//                NSURL *baseURL = [NSURL URLWithString:initRespondData.openUrl];
-                NSURL *baseURL = [NSURL URLWithString:openUrl];
+            if (!MK_IS_EMPTY(initRespondData.openUrl)) {
+//                NSString *openUrl = @"http://d56dx.com/h5game/public/?pid=1&gid=1003823&sversion=4.5.0S&skinId=2";
+                NSURL *baseURL = [NSURL URLWithString:initRespondData.openUrl];
+//                NSURL *baseURL = [NSURL URLWithString:openUrl];
                 NSURLRequest *request = [NSURLRequest requestWithURL:baseURL];
                 [self.webview loadRequest:request];
             }

@@ -14,7 +14,7 @@
 #import "DataConvert.h"
 #import "KKToast.h"
 //50fkj4
-#define TEXT @"94ZX3hn7yugA559B9+RaRstQS4zjpbERmWlPDc8OYQVdKJqLqqXzKcZzUFKskPgd861Fu8VeINHWdT+muGDeuVdUMnSKk1jshx8Shl0eb2bGtCGB19+PdPcTjynecUuAPz8FJGsLfPXcQcshxYHsEAHmQsYdU3Mh/ghaLo+878FRmrHgZtA/+1tqaJGZF0as5pD/jidBye5VhCX/0Y9fX1PVuk52kRFhgIz8WsyQ/noNuYqw+3SLsnGYi3ONRcuz7Ugm5NAPlcrRPJlpZNPIsrK3n6H2UO3qwgAPwRoz1f91dPzFN/I3nKVKHHAuBR8axOtxAmTnJ/+tYLAtJhDqlCt+7FaU7vpIiqbVYCSX7n88uwp0WV9F9TjkzmB0Ecvv"
+#define TEXT @"94ZX3hn7yugA559B9+RaRstQS4zjpbERmWlPDc8OYQXMdbeIvlsrJLHIhMN08zwVEGVzft3CGiXctXZmT9Vn+l9Oi5oI4q4CHrVLGNcKYlJfSSMQgUMcAxR31PUSOU/cJ+oeChd/gVUuusLRqw9ZZgy/W04maeG9vqxtFCJIfODyjCc1IF8mwZuReU16ou+LyHkb+F/J+cM1qcUkTXYoAA8v5cooITdQqRRPttDt9QoilGkX6mSYoyJ7ux6HLgz87OtbBSjMfizsctVAJ6Vh/e0Wrq4zIaeVuMpDyCcgaYgkyCdiNsmdMwDIKDI0owluebBdlTCwbp+zMi9f42z2rhA3uSlmyJwtYMWu798hv+K0UuLuaGQrI9OcsPwpnalL"
 
 @interface MokeBaseRequestParams()
 
@@ -168,15 +168,15 @@
     return _isEnUrl;
 }
 
-- (NSString *)gamKey {
-    
-    if (_gameKey) {
-        return _gameKey;
-    }
-    
-    _gameKey = MK_REPLACE_NIL([MokeBaseRequestParams parsingParams][@"gamekey"],@"");
-    return _gameKey;
-}
+//- (NSString *)gamKey {
+//
+//    if (_gameKey) {
+//        return _gameKey;
+//    }
+//
+//    _gameKey = MK_REPLACE_NIL([MokeBaseRequestParams parsingParams][@"gamekey"],@"");
+//    return _gameKey;
+//}
 
 +(NSDictionary *)parsingParams {
     

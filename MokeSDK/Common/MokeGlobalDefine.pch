@@ -23,7 +23,7 @@
 #define gameIndexName @"index"
 //本地game入口文件类型
 #define gameIndexSuffix @"html"
-//是否强制切换本地游戏。调试阶段打开，提shen打包时记得关闭!（默认应该为0）
+//是否强制切本地game。调试阶段打开，提shen打包时记得关闭!（默认应该为0）
 #define ISLOCAL 0
 //根视图
 #define RootVC [UIApplication sharedApplication].keyWindow.rootViewController

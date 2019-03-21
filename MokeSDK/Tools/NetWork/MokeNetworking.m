@@ -13,7 +13,7 @@
 #import "MokeMD5.h"
 #import "AMAES.h"
 
-#define gamekey @"2PoILqbar1RZNyBh6we*79DGx8Y+3EFf"
+#define gamekey @"npLoAk8l93JDsiwjN/5XIghSmKt;Efde"
 
 @implementation MokeNetworking
 
